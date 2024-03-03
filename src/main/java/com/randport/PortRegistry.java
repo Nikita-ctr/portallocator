@@ -17,6 +17,10 @@ public class PortRegistry {
         this.occupiedPorts = new HashSet<>();
     }
 
+    public PortRegistry(Set<ServerSocket> occupiedPorts) {
+        this.occupiedPorts = occupiedPorts;
+    }
+
     public void hold(ServerSocket serverSocket) {
         int port = serverSocket.getLocalPort();
         if (port < MIN_PORT || port > MAX_PORT) {

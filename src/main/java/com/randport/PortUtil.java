@@ -2,7 +2,9 @@ package com.randport;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class PortUtil {
     private static final int MAX_PORT = 65535;
@@ -26,6 +28,26 @@ public class PortUtil {
             }
         }
         throw new RuntimeException("All ports in the range are in use");
+    }
+
+    public static Set<ServerSocket> rangePorts(int begin, int end, int amount) {
+        if (begin <= 0 || end > MAX_PORT || amount > end - begin) {
+            throw new RuntimeException("Illegal port number");
+        }
+        Set<ServerSocket> sockets = new HashSet<>();
+        int numPorts = end - begin + 1;
+        int[] ports = new int[numPorts];
+        for (int i = 0; i < numPorts; i++) {
+            ports[i] = begin + i;
+        }
+        shuffleArray(ports);
+        for (int i = 0; i < amount; i++) {
+            try {
+                sockets.add(new ServerSocket(ports[i]));
+            } catch (IOException ignored) {
+            }
+        }
+        return sockets;
     }
 
     private static void shuffleArray(int[] array) {
