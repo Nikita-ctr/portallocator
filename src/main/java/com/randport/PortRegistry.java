@@ -53,4 +53,8 @@ public class PortRegistry {
                         serverSocket.getLocalPort(), serverSocket.getInetAddress()))
                 .collect(Collectors.toList());
     }
+
+    public void clear() {
+        occupiedPorts.clear();
+    }
 }
