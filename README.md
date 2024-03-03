@@ -8,6 +8,14 @@ portRegistry.hold(PortUtil.randomPort());
 ```
 <br />
 
+Or you can pre-initialize reserved ports
+```java
+Set<ServerSocket> sockets = PortUtil.rangePorts(8081, 8090, 5);
+PortRegistry portRegistry = new PortRegistry(sockets);
+```
+
+<br />
+
 And you can also use it like this, to reserve a specific TCP port:
 
 ```java
