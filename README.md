@@ -1,4 +1,4 @@
-### It's a simple Java library to get a random TCP port.
+### It's a simple Java library to get a random TCP port
 
 You can reserve a random TCP port:
 
